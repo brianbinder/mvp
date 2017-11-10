@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-client": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline -w && live-server"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,9 @@
   },
   "homepage": "https://github.com/pray4mojo/mvp#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "babel-loader": "^7.1.2",
+    "express": "^4.16.2",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0"
   }
 }

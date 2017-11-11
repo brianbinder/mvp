@@ -55,15 +55,15 @@ class App extends React.Component {
     });
   }
 
-  submitPost(body) {
+  submitPostHandler(body) {
     var context = this;
     var blogPost = {
       body: body,
       username: this.state.userLoggedIn,
-      date: new Date().toLocaleTimeString()
-      seq: new Date().getTime();
-    }
-    $.post('')
+      date: new Date().toLocaleTimeString(),
+      seq: new Date().getTime()
+    };
+    console.log(blogPost);
   }
 
 
@@ -74,10 +74,11 @@ class App extends React.Component {
         userLoggedIn={this.state.userLoggedIn}
         createPost={this.state.createPost}
         createPostInput={this.createPostInput.bind(this)}
-        submitPost={this.submitPost.bind(this)}/>
+         />
         <h1>Simply Blogging</h1>
         <UserList users={this.state.users}/>
-        <PostList createPost={this.state.createPost} posts={this.state.posts}/>
+        <PostList createPost={this.state.createPost} posts={this.state.posts}
+        submitPostHandler={this.submitPostHandler.bind(this)} />
       </div>
     );
   }

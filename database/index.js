@@ -21,16 +21,18 @@ var saveUser = (username, password, cb) => {
   })
 }
 
-var retrieveUsers = (cb) => {
-  User.find({}, (err, users) => {
-    if (err) {
-      console.log(err);
-    } else {
+var retrieveUsers = (username, cb) => {
+  var query = {};
+  if (username) {
+    query.username = username;
+  }
+  User.find(query, (err, users) => {
+    if (!username) {
       users = users.map((user) => {
         return user.username;
       });
-      cb(users);
     }
+    cb(err, users);
   });
 }
 
@@ -66,7 +68,7 @@ var retrievePosts = (user, cb) => {
 
   Post.find(query, (err, posts) => {
     posts.sort(sortByDate);
-    cb(posts.slice(0, 10));
+    cb(err, posts.slice(0, 10));
   });
 }
 

@@ -37,7 +37,7 @@ class App extends React.Component {
       context.setState({
         posts: posts
       });
-    })
+    });
   }
 
   logIn(user, password) {
@@ -46,11 +46,13 @@ class App extends React.Component {
       username: user,
       password: password
     };
-    $.post('/submitNewUser', data, function(response) {
-      context.setState({
-        userLoggedIn: user
-      });
-    })
+    $.post('/submitLogin', data, function(response) {
+      if (response) {
+        context.setState({
+          userLoggedIn: user
+        });
+      }
+    });
   }
 
   createPostInput() {

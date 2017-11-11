@@ -20,8 +20,10 @@
   "homepage": "https://github.com/pray4mojo/mvp#readme",
   "dependencies": {
     "babel-loader": "^7.1.2",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "react": "^16.1.0",
     "react-dom": "^16.1.0"
   }

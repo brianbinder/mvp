@@ -10,3 +10,7 @@
   margin: 0;
 }
 
+#postText {
+  width: 80%;
+  height: 20rem;
+}

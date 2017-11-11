@@ -1,8 +1,8 @@
 function User(props) {
   return (
-    <div className="User">
-      <a href="#">{props.user}</a>
-    </div>
+
+      <a className="User" href="#">{props.user}</a>
+
   );
 }
 

@@ -4,6 +4,7 @@ class App extends React.Component {
     this.state = {
       users: ['Bobby', 'Jill', 'Martha'],
       userLoggedIn: null,
+      createPost: false,
       posts: [{
         username: 'Bobby',
         body: 'Beautiful day!',
@@ -34,27 +35,35 @@ class App extends React.Component {
   }
 
   logIn(user, password) {
-    var data = JSON.stringify({
+    var context = this;
+    var data = {
       username: user,
       password: password
-    });
+    };
+    $.post('/submitNewUser', data, function(response) {
+      context.setState({
+        userLoggedIn: user
+      });
+    })
+  }
 
-    console.log(data);
-    // $.post('/submitNewUser', data, function(response) {
-    //   this.setState({
-    //     userLoggedIn: user
-    //   });
-    // })
+  createPostInput() {
+    this.setState({
+      createPost: true
+    });
+    console.log('the button works');
   }
 
 
   render() {
     return (
       <div className="App Container">
-        <Login loginFunc={this.logIn.bind(this)} userLoggedIn={this.state.userLoggedIn}/>
+        <Login loginFunc={this.logIn.bind(this)}
+        userLoggedIn={this.state.userLoggedIn}
+        createPost={this.createPostInput.bind(this)}/>
         <h1>Simply Blogging</h1>
         <UserList users={this.state.users}/>
-        <PostList posts={this.state.posts}/>
+        <PostList createPost={this.state.createPost} posts={this.state.posts}/>
       </div>
     );
   }

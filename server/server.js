@@ -11,26 +11,22 @@ app.use(bodyParser.json());
 
 app.get('/users', function(req, res) {
   db.retrieveUsers((users) => {
-    console.log(users);
+    console.log('users, server.js ln14: ', users);
     res.send(users);
   });
 });
 
 app.post('/submitNewUser', function(req, res) {
-  console.log(req.body.newUsername);
-  db.saveUser(req.body.newUsername, req.body.newPassword, (err) => {
+  db.saveUser(req.body.username, req.body.password, (err) => {
     if (err) {
-      res.write(err);
+      console.log(err);
     } else {
-      console.log('saved ', req.body.newUsername, ' and ', req.body.newPassword);
-      res.redirect('/');
+      console.log('saved ', req.body.username, ' and ', req.body.password);
     }
+    res.redirect('/');
   });
 });
 
-// app.get('/', function (req, res) {
-//   res.send('You found the server');
-// });
 
 
 app.listen(port);

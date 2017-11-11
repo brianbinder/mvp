@@ -11,8 +11,14 @@ app.use(bodyParser.json());
 
 app.get('/users', function(req, res) {
   db.retrieveUsers((users) => {
-    console.log('users, server.js ln14: ', users);
     res.send(users);
+  });
+});
+
+app.get('/posts', function(req, res) {
+  db.retrievePosts(null, (posts) => {
+    console.log('posts, server.js line 20: ', posts);
+    res.send(posts);
   });
 });
 
@@ -27,6 +33,20 @@ app.post('/submitNewUser', function(req, res) {
   });
 });
 
-
+app.post('/submitNewPost', function(req, res) {
+  console.log(req.body);
+  db.savePost(req.body, (err) => {
+    if (err) { throw err; }
+    res.send();
+  });
+  // db.saveUser(req.body.username, req.body.password, (err) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('saved ', req.body.username, ' and ', req.body.password);
+  //   }
+  //   res.redirect('/');
+  // });
+});
 
 app.listen(port);

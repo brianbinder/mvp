@@ -23,6 +23,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.fetchUsers();
+    this.fetchPosts();
   }
 
   fetchUsers() {
@@ -32,6 +33,15 @@ class App extends React.Component {
         users: users
       });
     });
+  }
+
+  fetchPosts() {
+    var context = this;
+    $.get('/posts', function(posts) {
+      context.setState({
+        posts: posts
+      });
+    })
   }
 
   logIn(user, password) {
@@ -60,10 +70,14 @@ class App extends React.Component {
     var blogPost = {
       body: body,
       username: this.state.userLoggedIn,
-      date: new Date().toLocaleTimeString(),
+      date: new Date().toLocaleDateString('en-US'),
       seq: new Date().getTime()
     };
-    console.log(blogPost);
+    $.post('/submitNewPost', blogPost, function(response) {
+      context.setState({
+        createPost: false
+      });
+    });
   }
 
 

@@ -3,6 +3,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       users: ['Bobby', 'Jill', 'Martha'],
+      userLoggedIn: null,
       posts: [{
         username: 'Bobby',
         body: 'Beautiful day!',
@@ -32,10 +33,25 @@ class App extends React.Component {
     });
   }
 
+  logIn(user, password) {
+    var data = JSON.stringify({
+      username: user,
+      password: password
+    });
+
+    console.log(data);
+    // $.post('/submitNewUser', data, function(response) {
+    //   this.setState({
+    //     userLoggedIn: user
+    //   });
+    // })
+  }
+
 
   render() {
     return (
       <div className="App Container">
+        <Login loginFunc={this.logIn.bind(this)} userLoggedIn={this.state.userLoggedIn}/>
         <h1>Simply Blogging</h1>
         <UserList users={this.state.users}/>
         <PostList posts={this.state.posts}/>

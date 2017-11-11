@@ -2,7 +2,20 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: ['Bobby', 'Jill', 'Martha']
+      users: ['Bobby', 'Jill', 'Martha'],
+      posts: [{
+        username: 'Bobby',
+        body: 'Beautiful day!',
+        date: new Date()
+      }, {
+        username: 'Jill',
+        body: 'Taking a walk!',
+        date: new Date()
+      }, {
+        username: 'Martha',
+        body: 'Admiring the view on this wonderful morning.',
+        date: new Date()
+      }]
     };
   }
 
@@ -25,6 +38,7 @@ class App extends React.Component {
       <div className="App Container">
         <h1>Simply Blogging</h1>
         <UserList users={this.state.users}/>
+        <PostList posts={this.state.posts}/>
       </div>
     );
   }

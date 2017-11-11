@@ -34,6 +34,23 @@ var retrieveUsers = (cb) => {
   });
 }
 
+var PostSchema = new Schema({
+  username: { type: String },
+  body: { type: String },
+  date: { type: Date }
+});
+
+var Post = mongoose.model('Post', PostSchema);
+
+var savePost = (post) => {
+
+}
+
+var retrievePosts = (cb) => {
+
+}
 
 module.exports.saveUser = saveUser;
 module.exports.retrieveUsers = retrieveUsers;
+module.exports.savePost = savePost;
+module.exports.retrievePosts = retrievePosts;

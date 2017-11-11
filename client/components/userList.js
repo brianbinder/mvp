@@ -15,7 +15,7 @@ class UserList extends React.Component {
         return <User key={key} user={user}/>
       })}
       <form action="/submitNewUser" method="post">
-        <input type="text" name="newUserName" /><input type="submit" value="Submit"/>
+        New User: <input type="text" name="newUsername" />Password: <input type="text" name="newPassword" /><input type="submit" value="Submit"/>
       </form>
       </div>
     );

@@ -39,14 +39,6 @@ app.post('/submitNewPost', function(req, res) {
     if (err) { throw err; }
     res.send();
   });
-  // db.saveUser(req.body.username, req.body.password, (err) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     console.log('saved ', req.body.username, ' and ', req.body.password);
-  //   }
-  //   res.redirect('/');
-  // });
 });
 
 app.listen(port);

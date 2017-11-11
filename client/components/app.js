@@ -21,10 +21,6 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.fetchUsers();
-    this.fetchPosts();
-  }
 
   fetchUsers() {
     var context = this;
@@ -77,9 +73,15 @@ class App extends React.Component {
       context.setState({
         createPost: false
       });
+      context.fetchUsers();
+      context.fetchPosts();
     });
   }
 
+  componentDidMount() {
+    this.fetchUsers();
+    this.fetchPosts();
+  }
 
   render() {
     return (
@@ -91,6 +93,7 @@ class App extends React.Component {
          />
         <h1>Simply Blogging</h1>
         <UserList users={this.state.users}/>
+        <div className="horizontalLine" ></div>
         <PostList createPost={this.state.createPost} posts={this.state.posts}
         submitPostHandler={this.submitPostHandler.bind(this)} />
       </div>

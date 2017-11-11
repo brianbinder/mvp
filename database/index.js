@@ -61,7 +61,7 @@ var retrievePosts = (user, cb) => {
     query.username = user;
   }
   var sortByDate = (a, b) => {
-    return b.seq - a.sweq
+    return b.seq - a.seq
   }
 
   Post.find(query, (err, posts) => {

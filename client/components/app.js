@@ -3,10 +3,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       users: ['Bobby', 'Jill', 'Martha']
-    }
+    };
   }
 
   componentDidMount() {
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
     var context = this;
     $.get('/users', function(users) {
       context.setState({
@@ -14,6 +18,7 @@ class App extends React.Component {
       });
     });
   }
+
 
   render() {
     return (

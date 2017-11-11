@@ -21,5 +21,19 @@ var saveUser = (username, password, cb) => {
   })
 }
 
+var retrieveUsers = (cb) => {
+  User.find({}, (err, users) => {
+    if (err) {
+      console.log(err);
+    } else {
+      users = users.map((user) => {
+        return user.username;
+      });
+      cb(users);
+    }
+  });
+}
+
 
 module.exports.saveUser = saveUser;
+module.exports.retrieveUsers = retrieveUsers;

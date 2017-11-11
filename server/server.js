@@ -10,8 +10,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/users', function(req, res) {
-  var users = ['Tom', 'John', 'Jerry'];
-  res.send(users);
+  db.retrieveUsers((users) => {
+    console.log(users);
+    res.send(users);
+  });
 });
 
 app.post('/submitNewUser', function(req, res) {

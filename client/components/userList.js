@@ -11,12 +11,12 @@ class UserList extends React.Component {
   render() {
     return (
       <div className="userList">
-      {this.props.users.map((user, key) => {
-        return <User key={key} user={user}/>
-      })}
-      <form action="/submitNewUser" method="post">
-        User: <input type="text" name="newUsername" />Password: <input type="text" name="newPassword" /><input type="submit" value="Submit"/>
-      </form>
+        {this.props.users.map((user, key) => {
+          return <User key={key} user={user}/>
+        })}
+        <form action="/submitNewUser" method="post">
+          User: <input type="text" name="newUsername" />Password: <input type="text" name="newPassword" /><input type="submit" value="Submit"/>
+        </form>
       </div>
     );
   }

@@ -6,15 +6,15 @@ class App extends React.Component {
       posts: [{
         username: 'Bobby',
         body: 'Beautiful day!',
-        date: new Date()
+        date: new Date().toLocaleTimeString()
       }, {
         username: 'Jill',
         body: 'Taking a walk!',
-        date: new Date()
+        date: new Date().toLocaleTimeString()
       }, {
         username: 'Martha',
         body: 'Admiring the view on this wonderful morning.',
-        date: new Date()
+        date: new Date().toLocaleTimeString()
       }]
     };
   }

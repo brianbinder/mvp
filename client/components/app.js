@@ -48,10 +48,22 @@ class App extends React.Component {
   }
 
   createPostInput() {
+    var state = this.state.createPost;
+    state = !state;
     this.setState({
-      createPost: true
+      createPost: state
     });
-    console.log('the button works');
+  }
+
+  submitPost(body) {
+    var context = this;
+    var blogPost = {
+      body: body,
+      username: this.state.userLoggedIn,
+      date: new Date().toLocaleTimeString()
+      seq: new Date().getTime();
+    }
+    $.post('')
   }
 
 
@@ -60,7 +72,9 @@ class App extends React.Component {
       <div className="App Container">
         <Login loginFunc={this.logIn.bind(this)}
         userLoggedIn={this.state.userLoggedIn}
-        createPost={this.createPostInput.bind(this)}/>
+        createPost={this.state.createPost}
+        createPostInput={this.createPostInput.bind(this)}
+        submitPost={this.submitPost.bind(this)}/>
         <h1>Simply Blogging</h1>
         <UserList users={this.state.users}/>
         <PostList createPost={this.state.createPost} posts={this.state.posts}/>

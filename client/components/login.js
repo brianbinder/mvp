@@ -3,8 +3,10 @@ class Login extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      actionText: 'Create new post'
     };
+
   }
 
   handleUserChange(event) {
@@ -26,15 +28,21 @@ class Login extends React.Component {
 
   render() {
     if (this.props.userLoggedIn) {
+      var actionText = '';
+      if (this.props.createPost) {
+        actionText = 'View posts';
+      } else {
+        actionText = 'Create new post';
+      }
       return (
         <div className="login">
           <div className="loggedInUser">Logged in as {this.props.userLoggedIn}</div>
-          <button onClick={this.props.createPost}>Create new post</button>
+          <button onClick={this.props.createPostInput}>{actionText}</button>
         </div>
       );
     } else {
       return (
-        <form onSubmit={this.submitHandler.bind(this)} className="login" action="/submitNewUser" method="post">
+        <form onSubmit={this.submitHandler.bind(this)} className="login" >
           User: <input type="text" name="newUsername" onChange={this.handleUserChange.bind(this)}/>
           Password: <input type="text" name="newPassword" onChange={this.handlePassChange.bind(this)}/>
           <input type="submit" value="Login"/>

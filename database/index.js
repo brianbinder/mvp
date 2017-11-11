@@ -37,7 +37,8 @@ var retrieveUsers = (cb) => {
 var PostSchema = new Schema({
   username: { type: String },
   body: { type: String },
-  date: { type: Date }
+  date: { type: Date },
+  seq: { type: Number }
 });
 
 var Post = mongoose.model('Post', PostSchema);

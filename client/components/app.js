@@ -31,14 +31,22 @@ class App extends React.Component {
     });
   }
 
-  fetchPosts() {
+  fetchPosts(username) {
     var context = this;
-    $.get('/posts', function(posts) {
+    var path = '/posts';
+    if (username) {
+      path += '/' + username;
+    }
+    $.get(path, function(posts) {
       context.setState({
         posts: posts
       });
     });
   }
+
+  // filterPosts(username) {
+  //   console.log(username);
+  // }
 
   logIn(user, password) {
     var context = this;
@@ -106,7 +114,8 @@ class App extends React.Component {
         createPostInput={this.createPostInput.bind(this)}
          />
         <h1>Simply Blogging</h1>
-        <UserList users={this.state.users}/>
+        <UserList users={this.state.users}
+        fetchPosts={this.fetchPosts.bind(this)}/>
         <div className="horizontalLine" ></div>
         <PostList createPost={this.state.createPost} posts={this.state.posts}
         submitPostHandler={this.submitPostHandler.bind(this)} />

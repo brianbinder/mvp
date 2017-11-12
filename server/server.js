@@ -17,7 +17,10 @@ app.use(session({
   saveUninitialized: true
 }));
 
+
 app.get('/users', function(req, res) {
+  console.log('get users path: ', req.path);
+
   db.retrieveUsers(null, (err, users) => {
     if (err) { console.log('error server.js get /users', err); }
     res.send(users);
@@ -31,9 +34,22 @@ app.get('/posts', function(req, res) {
   });
 });
 
+app.use((req, res, next) => {
+  if (req.path.indexOf('/posts') !== -1 && req.method === 'GET') {
+    var username = req.path.slice(7);
+    db.retrievePosts(username, (err, posts) => {
+      if (err) { console.log('error server.js get /posts', err) }
+      res.send(posts);
+    });
+  } else {
+    next();
+  }
+
 app.post('/logOut', function(req, res) {
   req.session.destroy();
   res.send();
+});
+
 });
 
 app.post('/submitLogin', function(req, res) {

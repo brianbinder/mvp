@@ -12,7 +12,12 @@ class UserList extends React.Component {
     return (
       <div className="userList">
         {this.props.users.map((user, key) => {
-          return <span key={key}> <User  user={user}/> </span>
+          return (
+            <span key={key}>
+              <User fetchPosts={this.props.fetchPosts}
+                user={user}/>
+            </span>
+          );
         })}
       </div>
     );

@@ -37,7 +37,8 @@ class Login extends React.Component {
       return (
         <div className="login">
           <div className="loggedInUser">Logged in as {this.props.userLoggedIn}</div>
-          <button onClick={this.props.createPostInput}>{actionText}</button>
+          <button id="jokerBtn" onClick={this.props.createPostInput}>{actionText}</button>
+          <button onClick={this.props.logOut}>Logout</button>
         </div>
       );
     } else {

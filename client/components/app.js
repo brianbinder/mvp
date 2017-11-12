@@ -55,6 +55,16 @@ class App extends React.Component {
     });
   }
 
+  logOut() {
+    var context = this;
+    $.post('/logOut', function(response) {
+      context.setState({
+        userLoggedIn: null,
+        createPost: false
+      });
+    })
+  }
+
   createPostInput() {
     var state = this.state.createPost;
     state = !state;
@@ -88,7 +98,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App Container">
-        <Login loginFunc={this.logIn.bind(this)}
+        <Login
+        loginFunc={this.logIn.bind(this)}
+        logOut={this.logOut.bind(this)}
         userLoggedIn={this.state.userLoggedIn}
         createPost={this.state.createPost}
         createPostInput={this.createPostInput.bind(this)}

@@ -31,19 +31,29 @@ app.get('/posts', function(req, res) {
   });
 });
 
+app.post('/logOut', function(req, res) {
+  req.session.destroy();
+  res.send();
+});
+
 app.post('/submitLogin', function(req, res) {
   dbHelp.logInOrCreateUser(req.body.username, req.body.password, (result) => {
-    console.log(result);
+    if (result) {
+      req.session.username = req.body.username;
+    }
     res.send(result);
   })
 });
 
 app.post('/submitNewPost', function(req, res) {
-  console.log(req.body);
-  db.savePost(req.body, (err) => {
-    if (err) { throw err; }
-    res.send();
-  });
+  if (req.session.username === req.body.username) {
+    db.savePost(req.body, (err) => {
+      if (err) { throw err; }
+      res.send();
+    });
+  } else {
+    res.redirect('/');
+  }
 });
 
 app.listen(port);

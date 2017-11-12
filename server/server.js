@@ -19,8 +19,6 @@ app.use(session({
 
 
 app.get('/users', function(req, res) {
-  console.log('get users path: ', req.path);
-
   db.retrieveUsers(null, (err, users) => {
     if (err) { console.log('error server.js get /users', err); }
     res.send(users);

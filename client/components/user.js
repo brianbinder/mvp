@@ -11,7 +11,7 @@ class User extends React.Component {
   render() {
     return (
 
-      <a className="User" href="#"
+      <a className="User" href=""
         onClick={this.handleClick.bind(this)}>
           {this.props.user}
       </a>

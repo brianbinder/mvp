@@ -44,10 +44,6 @@ class App extends React.Component {
     });
   }
 
-  // filterPosts(username) {
-  //   console.log(username);
-  // }
-
   logIn(user, password) {
     var context = this;
     var data = {
@@ -59,6 +55,7 @@ class App extends React.Component {
         context.setState({
           userLoggedIn: user
         });
+        context.fetchUsers();
       }
     });
   }
@@ -79,6 +76,7 @@ class App extends React.Component {
     this.setState({
       createPost: state
     });
+    this.fetchPosts();
   }
 
   submitPostHandler(body) {

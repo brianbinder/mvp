@@ -6,6 +6,10 @@ class UserList extends React.Component {
     };
   }
 
+  handleClick(event) {
+    event.preventDefault();
+    this.props.fetchPosts();
+  }
 
 
   render() {
@@ -19,6 +23,7 @@ class UserList extends React.Component {
             </span>
           );
         })}
+        <a className="User" href="" onClick={this.handleClick.bind(this)}>Most Recent</a>
       </div>
     );
   }

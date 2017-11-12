@@ -14,8 +14,6 @@ class PostList extends React.Component {
 
   submitHandler(event) {
     event.preventDefault();
-    console.log(this.state.body);
-    console.log(this.props);
     this.props.submitPostHandler(this.state.body);
   }
 

@@ -105,18 +105,23 @@ class App extends React.Component {
     return (
       <div className="App Container">
         <Login
-        loginFunc={this.logIn.bind(this)}
-        logOut={this.logOut.bind(this)}
-        userLoggedIn={this.state.userLoggedIn}
-        createPost={this.state.createPost}
-        createPostInput={this.createPostInput.bind(this)}
+          loginFunc={this.logIn.bind(this)}
+          logOut={this.logOut.bind(this)}
+          userLoggedIn={this.state.userLoggedIn}
+          createPost={this.state.createPost}
+          createPostInput={this.createPostInput.bind(this)}
          />
         <h1>Simply Blogging</h1>
-        <UserList users={this.state.users}
-        fetchPosts={this.fetchPosts.bind(this)}/>
+        <UserList
+          users={this.state.users}
+          fetchPosts={this.fetchPosts.bind(this)}
+        />
         <div className="horizontalLine" ></div>
-        <PostList createPost={this.state.createPost} posts={this.state.posts}
-        submitPostHandler={this.submitPostHandler.bind(this)} />
+        <PostList
+          createPost={this.state.createPost}
+          posts={this.state.posts}
+          submitPostHandler={this.submitPostHandler.bind(this)}
+        />
       </div>
     );
   }
